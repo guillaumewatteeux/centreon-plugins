@@ -75,7 +75,7 @@ sub run {
                                 short_msg => "All databases are ok.");
     foreach my $row (@$result) {
         next if (defined($self->{option_results}->{filter}) && 
-                 $$row[0] !~ /$self->{option_results}->{filter}/);
+                 $$row[0] !~ /$self->{option_results}->{filter}/) || !defined($$row[1]);
     
         my $exit_code = $self->{perfdata}->threshold_check(value => $$row[1], threshold => [ { label => 'critical', exit_litteral => 'critical' }, { label => 'warning', exit_litteral => 'warning' } ]);
         
